@@ -1,12 +1,13 @@
 defmodule MimicError.OrdersTest do
   use MimicError.DataCase
+  use Mimic
 
   alias MimicError.Orders
+  alias MimicError.Orders.Order
+
+  import MimicError.OrdersFixtures
 
   describe "orders" do
-    alias MimicError.Orders.Order
-
-    import MimicError.OrdersFixtures
 
     @invalid_attrs %{address: nil, total_price: nil, total_quantity: nil, phone_number: nil}
 
@@ -60,6 +61,16 @@ defmodule MimicError.OrdersTest do
     test "change_order/1 returns a order changeset" do
       order = order_fixture()
       assert %Ecto.Changeset{} = Orders.change_order(order)
+    end
+  end
+
+  describe "Mimic" do
+    @tag :this
+    test "Testing using Mimic" do
+      MimicError.Orders
+      |> stub(:get_order!, fn _id -> %Order{id: 1, address: "Osasco"} end)
+
+      dbg MimicError.Orders.get_order!(1)
     end
   end
 end
