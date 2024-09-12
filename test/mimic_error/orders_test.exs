@@ -65,12 +65,11 @@ defmodule MimicError.OrdersTest do
   end
 
   describe "Mimic" do
-    @tag :this
     test "Testing using Mimic" do
       MimicError.Orders
       |> stub(:get_order!, fn _id -> %Order{id: 1, address: "Osasco"} end)
 
-      dbg MimicError.Orders.get_order!(1)
+      MimicError.Orders.get_order!(1)
     end
   end
 end

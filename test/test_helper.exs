@@ -1,4 +1,5 @@
 Mimic.copy(MimicError.Orders)
+Mimic.copy(MimicError.Crypto)
 
 ExUnit.start()
 
