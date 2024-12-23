@@ -18,6 +18,7 @@ defmodule MimicErrorWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    post "/test", MimicController, :test
   end
 
   # Other scopes may use custom stacks.
